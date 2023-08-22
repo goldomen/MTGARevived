@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+    <changeSet  author="GoldenShiber"  id="startup-1">
+        <preConditions>
+            <not>
+                <tableExists tableName="game_library"></tableExists>
+            </not>
+        </preConditions>
+        <createTable tableName="game_library">
+            <column  name="id"  type="INTEGER">
+                <constraints  nullable="false"  primaryKey="true"  unique="true"/>
+            </column>
+            <column  name="game_id"  type="INTEGER" >
+                <constraints  nullable="false"  unique="true"/>
+            </column>
+            <column  name="name"  type="VARCHAR(255)" >
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="created"  type="timestamp with time zone" >
+                <constraints nullable="false" />
+            </column>
+            <column  name="last_updated"  type="timestamp with time zone" />
+        </createTable>
+        <addAutoIncrement tableName="game_library" columnName="id" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet  author="GoldenShiber"  id="startup-2">
+        <preConditions>
+            <not>
+                <tableExists tableName="rulebooks"></tableExists>
+            </not>
+        </preConditions>
+        <createTable tableName="rulebooks">
+            <column  name="id"  type="INTEGER">
+                <constraints  nullable="false"  primaryKey="true"  unique="true"/>
+            </column>
+            <column  name="game_id"  type="INTEGER" >
+                <constraints  nullable="false"  unique="true"/>
+            </column>
+            <column  name="language"  type="VARCHAR(255)" />
+            <column  name="created"  type="timestamp with time zone" >
+                <constraints nullable="false" />
+            </column>
+            <column  name="last_updated"  type="timestamp with time zone" />
+        </createTable>
+    </changeSet>
+
+    <changeSet  author="GoldenShiber"  id="startup-3">
+        <preConditions>
+            <not>
+                <tableExists tableName="sessions"></tableExists>
+            </not>
+        </preConditions>
+        <createTable tableName="sessions">
+            <column  name="id"  type="INTEGER">
+                <constraints  nullable="false"  primaryKey="true"  unique="true"/>
+            </column>
+            <column  name="session_id"  type="INTEGER" >
+                <constraints  nullable="false" unique="true"/>
+            </column>
+            <column  name="game_id"  type="INTEGER" >
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="name"  type="VARCHAR(255)" >
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="created"  type="timestamp with time zone" >
+                <constraints nullable="false" />
+            </column>
+            <column  name="last_updated"  type="timestamp with time zone" />
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

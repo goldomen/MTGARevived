@@ -1,2 +1,2 @@
-# MTGARevived
-Working again
+# TrudvangSummer
+Summer Project for trudvang
